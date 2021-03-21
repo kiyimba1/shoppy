@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-22 00:53+0300\n"
+"PO-Revision-Date: 2021-03-21 23:55+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.2\n"
+
+#: .\orders\models.py:13
+msgid "first name"
+msgstr "nombre"
+
+#: .\orders\models.py:14
+msgid "last name"
+msgstr "apellidos"
+
+#: .\orders\models.py:15
+msgid "e-mail"
+msgstr "correo electrónico"
+
+#: .\orders\models.py:16
+msgid "address"
+msgstr "dirección"
+
+#: .\orders\models.py:17
+msgid "postal code"
+msgstr "código postal"
+
+#: .\orders\models.py:18
+msgid "city"
+msgstr "ciudad"
+
+#: .\orders\templates\orders\order\create.html:5
+#: .\orders\templates\orders\order\create.html:9
+msgid "Checkout"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:11
+msgid "Your order"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:15
+#, python-format
+msgid ""
+"\n"
+"                    \"%(code)s\" (%(discount)s%% off)\n"
+"                "
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:26
+msgid "Place order"
+msgstr ""
