@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import braintree
 import os
 from pathlib import Path
 
@@ -42,6 +43,8 @@ INSTALLED_APPS = [
     'shop',
     'cart',
     'orders',
+    'payment',
+    'coupons'
 ]
 
 MIDDLEWARE = [
@@ -76,7 +79,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
@@ -132,3 +135,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 CART_SESSION_ID = 'cart'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'mail')
+# Braintree settings
+BRAINTREE_MERCHANT_ID = 'kqct9hnxg4mqtpxw'  # Merchant ID
+BRAINTREE_PUBLIC_KEY = 'fbcx7gdh6t9ngsj5'  # Public Key
+BRAINTREE_PRIVATE_KEY = 'f62820b763853d5b539a1be375210654'  # Private key
+
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
