@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import django_heroku
 import braintree
 import os
 from pathlib import Path
@@ -166,3 +167,6 @@ BRAINTREE_CONF = braintree.Configuration(
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 REDIS_DB = 1
+
+#Configure Django App for Heroku
+django_heroku.settings(locals())
