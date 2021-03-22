@@ -11,20 +11,20 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 
+import django_heroku
 import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(
+    os.path.abspath(os.path.join(__file__, os.pardir))))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-
-
-
+# SECRET_KEY = '(!))-4e!mhd3wbd(-ch_85q28d-jxf7n!luks@#@$r1fkmq*x1'
 
 
 # Application definition
@@ -79,15 +79,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
 
 
 # Password validation
@@ -137,6 +135,5 @@ USE_TZ = True
 
 CART_SESSION_ID = 'cart'
 
-#Configure Django App for Heroku
-import django_heroku
+# Configure Django App for Heroku
 django_heroku.settings(locals())

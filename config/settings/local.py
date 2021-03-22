@@ -2,7 +2,7 @@ import braintree
 
 from .base import *
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '(!))-4e!mhd3wbd(-ch_85q28d-jxf7n!luks@#@$r1fkmq*x1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -16,7 +16,7 @@ ALLOWED_HOSTS = ['*']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR + 'db.sqlite3',
     }
 }
 
