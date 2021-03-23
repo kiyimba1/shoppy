@@ -28,4 +28,4 @@ urlpatterns = i18n_patterns(
     path('coupons/', include('coupons.urls', namespace='coupons')),
     path('rosetta/', include('rosetta.urls')),
     path('', include('shop.urls', namespace='shop')),
-) + static(settings.base.MEDIA_URL, document_root=settings.base.MEDIA_ROOT) + static(settings.base.STATIC_URL, document_root=settings.base.STATIC_ROOT)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
