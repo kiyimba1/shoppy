@@ -169,7 +169,7 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'shoppy'
 
 # Braintree settings
-BRAINTREE_MERCHANT_ID = os.gtenv('BRAINTREE_MACHANT_ID')  # Merchant ID
+BRAINTREE_MERCHANT_ID = os.getenv('BRAINTREE_MACHANT_ID')  # Merchant ID
 BRAINTREE_PUBLIC_KEY = os.getenv('BRAINTREE_PUBLIC_KEY')  # Public Key
 BRAINTREE_PRIVATE_KEY = os.getenv('BRAINTREE_PRIVATE_KEY')  # Private key
 
