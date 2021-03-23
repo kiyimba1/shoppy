@@ -16,17 +16,17 @@ h6 {
 
 a {
   text-decoration: none;
-  color: #5993bb;
+  color: #305723;
 }
 
 a:hover {
-  color: #77b6e2;
+  color: #b1ff96;
 }
 
 a.button,
 input[type="submit"] {
   color: #fff;
-  background: #5993bb;
+  background: #305723;
   border-radius: 4px;
   padding: 10px 20px;
   font-size: 14px;
@@ -35,7 +35,7 @@ input[type="submit"] {
 
 a.button.light {
   color: #666;
-  background: #ededed;
+  background: #b1ff96;
 }
 
 .text-left {
@@ -70,7 +70,7 @@ tbody tr.subtotal {
 
 thead th,
 tbody tr.total {
-  background: #5993bb;
+  background: #23690c;
   color: #fff;
   font-weight: bold;
 }
@@ -176,7 +176,7 @@ ul.errorlist {
 }
 
 #sidebar ul li.selected {
-  background: #5993bb;
+  background: #23690c;
   border-radius: 4px;
 }
 
@@ -238,11 +238,11 @@ ul.errorlist {
   background: #efefef;
   padding: 10px 20px;
   color: #333;
-  border-bottom: 4px solid #5993bb;
+  border-bottom: 4px solid #23690c;
 }
 
 .order-info h3 {
-  color: #5993bb;
+  color: #23690c;
 }
 
 .order-info ul li {

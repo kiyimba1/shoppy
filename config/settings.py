@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import django_heroku
+import dj_database_url
 import braintree
 import os
 from pathlib import Path
@@ -28,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv(
     'SECRET_KEY', '(!))-4e!mhd3wbd(-ch_85q28d-jxf7n!luks@#@$r1fkmq*x1')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DJANGO_DEBUG', 'False')
+DEBUG = os.getenv('DJANGO_DEBUG', False)
 
 ALLOWED_HOSTS = ['*']
 
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -68,7 +70,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,10 +87,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static/')
 ]
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -96,13 +100,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {}
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -151,12 +157,21 @@ USE_TZ = True
 
 CART_SESSION_ID = 'cart'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'mail')
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# # EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'mail')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.getenv('EMAIL_PASSWORD')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'shoppy'
+
 # Braintree settings
-BRAINTREE_MERCHANT_ID = 'kqct9hnxg4mqtpxw'  # Merchant ID
-BRAINTREE_PUBLIC_KEY = 'fbcx7gdh6t9ngsj5'  # Public Key
-BRAINTREE_PRIVATE_KEY = 'f62820b763853d5b539a1be375210654'  # Private key
+BRAINTREE_MERCHANT_ID = os.gtenv('BRAINTREE_MACHANT_ID')  # Merchant ID
+BRAINTREE_PUBLIC_KEY = os.getenv('BRAINTREE_PUBLIC_KEY')  # Public Key
+BRAINTREE_PRIVATE_KEY = os.getenv('BRAINTREE_PRIVATE_KEY')  # Private key
 
 BRAINTREE_CONF = braintree.Configuration(
     braintree.Environment.Sandbox,
@@ -165,9 +180,9 @@ BRAINTREE_CONF = braintree.Configuration(
     BRAINTREE_PRIVATE_KEY
 )
 
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
-REDIS_DB = 1
+REDIS_HOST = os.getenv('REDIS_HOST')
+REDIS_PORT = os.getenv('REDIS_PORT')
+REDIS_DB = os.getenv('REDIS_DB')
 
 # Configure Django App for Heroku
 django_heroku.settings(locals())

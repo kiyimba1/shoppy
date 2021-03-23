@@ -13,5 +13,5 @@ def order_created(order_id):
     message = f'Dear {order.first_name},\n\n' \
               f'You have successfully placed an order.' \
               f'Your order ID is {order.id}.'
-    mail_sent = send_mail(subject, message, 'admin@shoppy.com', [order.email])
+    mail_sent = send_mail(subject, message, 'noreply@shoppy.com', [order.email], fail_silently=False,)
     return mail_sent
