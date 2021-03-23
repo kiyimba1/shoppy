@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 
 import django_heroku
+import dj_database_url
+import dotenv
 import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
@@ -134,6 +136,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 CART_SESSION_ID = 'cart'
+
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
 # Configure Django App for Heroku
 django_heroku.settings(locals())
