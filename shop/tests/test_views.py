@@ -37,13 +37,12 @@ class ProductDetailViewTest(TestCase):
         product = Product.objects.create(category=category, name='Test Product',
                                          slug='test-product', description='Test  dscription', price='100')
 
-    # def test_view_url_product(self):
+    def test_view_url_product(self):
 
+        response = self.client.get(reverse('shop:product_detail'))
+        self.assertEqual(response.status_code, 200)
+
+    # def test_correct_template(self):
     #     response = self.client.get(reverse('shop:product_detail', kwargs={
     #                                'id': '1', 'slug': 'test-product'}))
-    #     self.assertEqual(response.status_code, 200)
-
-    def test_correct_template(self):
-        response = self.client.get(reverse('shop:product_detail', kwargs={
-                                   'id': '1', 'slug': 'test-product'}))
-        self.assertTemplateUsed(response, 'shop/product/detail.html')
+    #     self.assertTemplateUsed(response, 'shop/product/detail.html')
