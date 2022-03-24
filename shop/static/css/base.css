@@ -115,6 +115,10 @@ ul.errorlist {
    padding:0;
 }
 
+test{
+    flex-direction: column;
+}
+
 
 #header {
     padding:10px 100px;
